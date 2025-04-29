@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCart } from './CartContent';
+import { useCart } from '../contexts/CartContext'; // Corrección del import
 
 const CheckoutPage: React.FC = () => {
-  const { items, getPrice, clearCart } = useCart();
+  const { items, getPrice, clearCart } = useCart(); // ya correcto
   const [isProcessing, setIsProcessing] = useState(false);
   const [isPurchaseComplete, setIsPurchaseComplete] = useState(false);
   const navigate = useNavigate();
 
   const handlePayment = () => {
     setIsProcessing(true);
-    
+
     setTimeout(() => {
       setIsPurchaseComplete(true);
-      
+
       clearCart();
       // Redirect to home after a delay
       setTimeout(() => {
@@ -56,11 +56,11 @@ const CheckoutPage: React.FC = () => {
   return (
     <div className="checkout-page">
       <h1 className="checkout-title">Checkout</h1>
-      
+
       <div className="checkout-container">
         <div className="checkout-summary">
           <h2 className="checkout-summary-title">Order Summary</h2>
-          
+
           <div className="checkout-items">
             {items.map(item => (
               <div key={item.id} className="checkout-item">
@@ -72,20 +72,20 @@ const CheckoutPage: React.FC = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="checkout-total">
             <span className="checkout-total-label">Total</span>
             <span className="checkout-total-value">${getPrice().toFixed(2)}</span>
           </div>
         </div>
-        
+
         <div className="checkout-payment">
           <h2 className="checkout-payment-title">Payment</h2>
-          
+
           <div className="checkout-disclaimer">
             <p>This is a demo store. No real payment will be processed.</p>
           </div>
-          
+
           <button 
             className={`checkout-payment-button ${isProcessing ? 'checkout-payment-button-processing' : ''}`}
             onClick={handlePayment}

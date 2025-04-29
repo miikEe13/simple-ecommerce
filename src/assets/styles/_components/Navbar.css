@@ -1,0 +1,36 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    background-color: #1e293b; /* dark blue-gray */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-link {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 1.2rem;
+    position: relative;
+  }
+  
+  .navbar-link:hover {
+    color: #facc15; /* yellow on hover */
+  }
+  
+  .navbar-link-active {
+    color: #facc15; /* yellow */
+    font-weight: bold;
+  }
+  
+  .cart-badge {
+    background-color: #f87171; /* soft red */
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 9999px;
+    position: absolute;
+    top: -8px;
+    right: -12px;
+  }
+  

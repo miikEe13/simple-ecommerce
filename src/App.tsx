@@ -5,29 +5,27 @@ import ProductGrid from "./_components/ProductGrid";
 import ProductDetails from "./_components/ProductDetails";
 import CartPage from "./_components/CartPage";
 import CheckoutPage from "./_components/CheckoutPage";
-import { CartProvider } from "./_components/CartContent";
+import { CartProvider } from "./contexts/CartContext";
 import "./App.css";
+import "./assets/styles/_components/Loading.css";
 
-function HomePage(): number {
+function HomePage(): JSX.Element {
   const [countdown, setCountdown] = useState(59);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown((prevCount) => {
-        const newCount = prevCount > 0 ? prevCount - 1 : 59;
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setCountdown((prevCount) => {
+  //       if (prevCount === 0) {
+  //         alert("The Offers Have Ended");
+  //         return 59; // Reset to 59 after alert
+  //       }
+  //       return prevCount - 1;
+  //     });
+  //   }, 1000);
 
-        if (newCount === 0) {
-          alert("The Offers Have Ended");
-          return
-        }
+  //   return () => clearInterval(timer);
+  // }, []);
 
-        return newCount;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-  
   return (
     <>
       <div className="page-section">
@@ -35,6 +33,7 @@ function HomePage(): number {
         <p className="page-subheading">
           Discover our curated collection of high-quality products
         </p>
+        <p>Countdown: {countdown}</p> {/* Opcional: muestra el contador */}
         <hr className="divider" />
       </div>
       <ProductGrid />
@@ -45,7 +44,7 @@ function HomePage(): number {
 function App() {
   return (
     <CartProvider>
-      <BrowserRouter>
+      <Router>
         <div className="container">
           <Navbar />
           <Routes>
@@ -55,7 +54,7 @@ function App() {
             <Route path="/checkout" element={<CheckoutPage />} />
           </Routes>
         </div>
-      </BrowserRouter>
+      </Router>
     </CartProvider>
   );
 }

@@ -1,9 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from './CartContent';
+import { useCart } from '../contexts/CartContext';
+import { useNavigate } from 'react-router-dom';
+
+import '../assets/styles/_components/CartPage.css';
 
 const CartPage: React.FC = () => {
-  const { items, removeItemFromCart, updateQuantity, getTotalPrice } = useCart();
+  const navigate = useNavigate();
+  const { items, removeItemFromCart, updateQuantity, getPrice } = useCart();
+
+  const goToCheckout = () => {
+    if (items.length === 0) {
+      alert('Your cart is empty');
+      return;
+    }
+    navigate('/checkout');
+  }
 
   if (items.length === 0) {
     return (
@@ -21,80 +33,93 @@ const CartPage: React.FC = () => {
 
   return (
     <div className="cart-page">
-      <h1 className="cart-title">Your Cart</h1>
-      
-      <div className="cart-items">
-        {items.map(item => (
-          <div key={item.name} className="cart-item">
-            <Link to={`/product/${item.id}`} className="cart-item-image-container">
-              <img src={item.image} alt={item.name} className="cart-item-image" />
+      <h1 className="cart-title">Shopping Cart</h1>
+
+      <div className="cart-layout">
+        
+        {/* --- Productos --- */}
+        <div className="cart-products">
+          <table className="cart-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map(item => (
+                <tr key={item.id}>
+                  <td>
+                    <div className="cart-product-info">
+                      <img src={item.image} alt={item.name} className="cart-product-image" />
+                      <Link to={`/product/${item.id}`}>{item.name}</Link>
+                    </div>
+                  </td>
+                  <td>${item.price.toFixed(2)}</td>
+                  <td>
+                    <div className="quantity-controls">
+                      <button
+                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        disabled={item.quantity <= 1}
+                      >
+                        -
+                      </button>
+                      <span>{item.quantity}</span>
+                      <button
+                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        disabled={item.quantity >= item.stock}
+                      >
+                        +
+                      </button>
+                    </div>
+                  </td>
+                  <td>${(item.price * item.quantity).toFixed(2)}</td>
+                  <td className="cart-actions">
+                    <button onClick={() => removeItemFromCart(item.id)}>🗑️</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* Botones debajo */}
+          <div className="cart-buttons">
+            <Link to="/" className="btn">
+              Continue Shopping
             </Link>
-            
-            <div className="cart-item-details">
-              <Link to={`/product/${item.id}`} className="cart-item-name">
-                {item.name}
-              </Link>
-              <div className="cart-item-price">${item.price.toFixed(2)} each</div>
-              <div className="cart-item-subtotal">
-                Subtotal: ${(item.price * item.quantity).toFixed(2)}
-              </div>
-            </div>
-            
-            <div className="cart-item-actions">
-              <div className="cart-quantity-container">
-                <button 
-                  className="cart-quantity-button"
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                  disabled={item.quantity <= 1}
-                >
-                  -
-                </button>
-                <span className="cart-quantity-display">{item.quantity}</span>
-                <button 
-                  className="cart-quantity-button"
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  disabled={item.quantity >= item.stock}
-                >
-                  +
-                </button>
-              </div>
-              
-              <button 
-                className="cart-remove-button"
-                onClick={() => removeItemFromCart(item.id)}
-                aria-label={`Remove ${item.name} from cart`}
-              >
-                ×
-              </button>
-            </div>
           </div>
-        ))}
+        </div>
+
+        {/* --- Resumen --- */}
+        <div className="cart-summary">
+          <h2>Summary</h2>
+          
+          <div className="cart-summary-row">
+            <span>Subtotal</span>
+            <span>${getPrice().toFixed(2)}</span>
+          </div>
+
+          <div className="cart-summary-row">
+            <span>Shipping</span>
+            <span>$0.00</span>
+          </div>
+
+          <div className="cart-summary-total">
+            Total: ${getPrice().toFixed(2)}
+          </div>
+
+          <button className="btn-checkout" onClick={goToCheckout}>
+            Proceed to Checkout
+          </button>
+        </div>
+
       </div>
-      
-      <div className="cart-summary">
-        <div className="cart-summary-row">
-          <span className="cart-summary-label">Items</span>
-          <span className="cart-summary-value">{items.length}</span>
-        </div>
-        
-        <div className="cart-summary-row">
-          <span className="cart-summary-label">Total Quantity</span>
-          <span className="cart-summary-value">
-            {items.map((total, item) => total + item.quantity, 0)}
-          </span>
-        </div>
-        
-        <div className="cart-summary-row cart-summary-total">
-          <span className="cart-summary-label">Total</span>
-          <span className="cart-summary-value">${getTotalPrice().toFixed(2)}</span>
-        </div>
-        
-        <Link to="/checkout" className="cart-checkout-button">
-          Proceed to Checkout
-        </Link>
-      </div>
+
     </div>
   );
 };
 
-export default CartPage; 
+export default CartPage;

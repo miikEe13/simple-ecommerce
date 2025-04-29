@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../assets/styles/_components/ProductCard.css';
 
 interface Product {
   id: number;
@@ -48,7 +49,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         
         <div className="product-footer">
           <div className="product-price">
-            ${product.price.Fixed(2)}
+            ${product.price.toFixed(2)}
           </div>
           <div className={getStockClass()}>
             {product.stock > 2 ? 'In Stock' : product.stock > 0 ? `Only ${product.stock} left` : 'Out of Stock'}
@@ -59,4 +60,4 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   );
 };
 
-export default ProductCard; 
+export default ProductCard;

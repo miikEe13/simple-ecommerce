@@ -1,63 +1,47 @@
-import React, { useEffects, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./_components/Navbar";
-import ProductGrid from "./_components/ProductGrid";
-import ProductDetails from "./_components/ProductDetails";
-import CartPage from "./_components/CartPage";
-import CheckoutPage from "./_components/CheckoutPage";
-import { CartProvider } from "./_components/CartContent";
-import "./App.css";
+import React from 'react';
+import { useCart } from '../contexts/CartContext'; // aquí usas el contexto real
 
-function HomePage(): number {
-  const [countdown, setCountdown] = useState(59);
+const CartContent: React.FC = () => {
+  const { items, removeItemFromCart, updateQuantity, getPrice } = useCart();
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown((prevCount) => {
-        const newCount = prevCount > 0 ? prevCount - 1 : 59;
-
-        if (newCount === 0) {
-          alert("The Offers Have Ended");
-          return
-        }
-
-        return newCount;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-  
-  return (
-    <>
-      <div className="page-section">
-        <h1 className="page-heading">Shop Our Products</h1>
-        <p className="page-subheading">
-          Discover our curated collection of high-quality products
-        </p>
-        <hr className="divider" />
+  if (items.length === 0) {
+    return (
+      <div className="cart-content-empty">
+        <h2>Your cart is empty</h2>
       </div>
-      <ProductGrid />
-    </>
-  );
-}
+    );
+  }
 
-function App() {
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <div className="container">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </CartProvider>
-  );
-}
+    <div className="cart-content">
+      {items.map((item) => (
+        <div key={item.id} className="cart-item">
+          <img src={item.image} alt={item.name} className="cart-item-image" />
 
-export default App;
+          <div className="cart-item-details">
+            <h3>{item.name}</h3>
+            <p>${item.price.toFixed(2)}</p>
+            <div className="cart-item-quantity">
+              <button onClick={() => updateQuantity(item.id, item.quantity - 1)} disabled={item.quantity <= 1}>
+                -
+              </button>
+              <span>{item.quantity}</span>
+              <button onClick={() => updateQuantity(item.id, item.quantity + 1)} disabled={item.quantity >= item.stock}>
+                +
+              </button>
+            </div>
+            <button className="cart-item-remove" onClick={() => removeItemFromCart(item.id)}>
+              Remove
+            </button>
+          </div>
+        </div>
+      ))}
+
+      <div className="cart-total">
+        <strong>Total: </strong> ${getPrice().toFixed(2)}
+      </div>
+    </div>
+  );
+};
+
+export default CartContent;

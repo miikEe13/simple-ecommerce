@@ -1,0 +1,18 @@
+.loading-container,
+.not-found-container {
+  padding: 2rem;
+  text-align: center;
+  color: #64748b;
+}
+
+.loading-text,
+.not-found-text {
+  font-size: 1.2rem;
+}
+
+.not-found-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #3b82f6;
+  text-decoration: underline;
+}

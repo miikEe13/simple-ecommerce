@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { useCart } from "./CartContent";
+import { useCart } from "../contexts/CartContext"; // corregido el import
+import "../assets/styles/_components/Navbar.css"; // Asegúrate de que la ruta sea correcta
 
 export default function Navbar() {
   const { getTotalItems } = useCart();
