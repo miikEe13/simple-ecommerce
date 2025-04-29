@@ -43,10 +43,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {product.category}
         </div>
         
-        <p className="product-description">
-          {product.description}
-        </p>
-        
         <div className="product-footer">
           <div className="product-price">
             ${product.price.toFixed(2)}
