@@ -1,0 +1,128 @@
+.checkout-page {
+    padding: 2rem;
+    background-color: #f8fafc;
+    min-height: 100vh;
+  }
+  
+  .checkout-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #1e293b;
+    text-align: center;
+  }
+  
+  .checkout-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .checkout-shipping-payment {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+  
+  .checkout-shipping {
+    flex: 2;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .checkout-shipping label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: #475569;
+    font-weight: bold;
+  }
+  
+  .checkout-shipping input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .shipping-method input[type="radio"] {
+    max-width: 20px;
+}
+  
+  .shipping-method {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .checkout-summary {
+    flex: 1;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .checkout-summary h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #1e293b;
+  }
+  
+  .checkout-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .checkout-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .checkout-total {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1e293b;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .checkout-payment-button {
+    width: 100%;
+    background-color: #0284c7;
+    color: white;
+    padding: 1rem;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+  }
+  
+  .checkout-payment-button:hover {
+    background-color: #0369a1;
+  }
+  
+  .processing {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+  }
+  
+  .checkout-payment {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}

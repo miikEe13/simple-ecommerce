@@ -125,7 +125,7 @@
   }
   
   .cart-actions button:hover {
-    color: #0284c7;
+    color: #;
   }
   
   /* ----- Botones principales (seguir comprando, actualizar) ----- */
@@ -149,7 +149,7 @@
     transition: background-color 0.3s ease;
   }
   
-  .cart-buttons .btn:hover {
+  .cart-buttons .btn:hover {0284c7
     background-color: #dc2626;
   }
   
@@ -190,5 +190,17 @@
     border-radius: 0.75rem;
     cursor: pointer;
     text-transform: uppercase;
-    transition:
+    transition: background-color 0.3s ease;
+}
+  .cart-summary .btn-checkout:hover {
+    background-color: #dc2626;
+  }
+
+  .cart-summary small {
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #64748b;
+  }
   

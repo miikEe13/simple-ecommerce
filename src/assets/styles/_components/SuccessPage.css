@@ -1,0 +1,154 @@
+.success-page {
+    padding: 2rem;
+    background-color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .success-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .success-title {
+    font-size: 2.5rem;
+    color: #0284c7;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .success-message {
+    font-size: 1.2rem;
+    color: #475569;
+    margin-bottom: 2rem;
+  }
+  
+  .success-actions {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .btn-primary {
+    background-color: #0284c7;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0369a1;
+  }
+  
+  .success-subtitle {
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    color: #475569;
+  }
+  
+  .success-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .success-info {
+    flex: 1;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .success-summary {
+    flex: 2;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .success-info-box {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f1f5f9;
+    border-radius: 0.75rem;
+  }
+  
+  .success-items {
+    margin-bottom: 2rem;
+  }
+  
+  .success-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .success-item-name {
+    font-weight: bold;
+    color: #1e293b;
+  }
+  
+  .success-item-qty,
+  .success-item-price {
+    color: #475569;
+  }
+  
+  .success-total {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1rem;
+  }
+  
+  .success-total > div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+  }
+  
+  .success-total-final {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
+  
+  .success-total-label {
+    color: #1e293b;
+  }
+  
+  .btn-home {
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+    background-color: #0284c7;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-home:hover {
+    background-color: #0369a1;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .success-layout {
+      flex-direction: column;
+    }
+  }

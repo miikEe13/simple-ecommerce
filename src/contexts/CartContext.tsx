@@ -16,9 +16,22 @@ type CartContextType = {
   addToCart: (item: CartItem) => void; // <<< Aquí ya se llama addToCart
   removeItemFromCart: (id: number) => void;
   updateQuantity: (id: number, quantity: number) => void;
+  shippingInfo: ShippingInfo | null;
+  paymentInfo: PaymentInfo | null;
+  setShippingInfo: (info: ShippingInfo) => void;
+  setPaymentInfo: (info: PaymentInfo) => void;
   clearCart: () => void;
   getPrice: () => number;
   getTotalItems: () => number;
+};
+
+type ShippingInfo = {
+  email: string;
+  address: string;
+};
+
+type PaymentInfo = {
+  method: string; // Ej: "Credit Card", "Paypal", "Cash on Delivery"
 };
 
 // Create context
@@ -27,6 +40,9 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 // Provider
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [shippingInfo, setShippingInfo] = useState<ShippingInfo | null>(null);
+  const [paymentInfo, setPaymentInfo] = useState<PaymentInfo | null>(null);
+
 
   const addToCart = (item: CartItem) => {
     setItems(prev => {
@@ -75,6 +91,10 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         clearCart,
         getPrice,
         getTotalItems,
+        shippingInfo,
+        paymentInfo,
+        setShippingInfo,
+        setPaymentInfo
       }}
     >
       {children}

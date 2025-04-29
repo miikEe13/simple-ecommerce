@@ -5,7 +5,10 @@ import ProductGrid from "./_components/ProductGrid";
 import ProductDetails from "./_components/ProductDetails";
 import CartPage from "./_components/CartPage";
 import CheckoutPage from "./_components/CheckoutPage";
+import SuccessPage from "./_components/SuccessPage";
+
 import { CartProvider } from "./contexts/CartContext";
+
 import "./App.css";
 import "./assets/styles/_components/Loading.css";
 
@@ -52,6 +55,7 @@ function App() {
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/success" element={<SuccessPage />} />
           </Routes>
         </div>
       </Router>
